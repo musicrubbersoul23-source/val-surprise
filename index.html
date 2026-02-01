@@ -1,1 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Surprise! 🌸</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            font-family: sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 85%;
+            max-width: 400px;
+            position: relative;
+        }
+        img { width: 100%; border-radius: 15px; }
+        h1 { color: #d63384; font-size: 24px; margin: 20px 0; }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            height: 60px;
+            position: relative;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease; /* This creates the smooth glide from the video */
+        }
+        #yesBtn { background: #ff4b2b; color: white; z-index: 10; }
+        #noBtn { background: #f8f9fa; color: #333; position: absolute; }
+    </style>
+</head>
+<body>
+    <div class="container" id="box">
+        <img id="gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpndW1yZHF4ZzVqbm9pZHF4ZzVqbm9pZHF4ZzVqbm9pZHF4ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif">
+        <h1 id="header">Do you love me?</h1>
+        <div class="buttons">
+            <button id="yesBtn" onclick="celebrate()">Yes</button>
+            <button id="noBtn" onmouseover="moveBtn()" ontouchstart="moveBtn()">No</button>
+        </div>
+    </div>
 
+    <script>
+        function moveBtn() {
+            const box = document.getElementById('box');
+            const noBtn = document.getElementById('noBtn');
+            
+            // Keeps the No button within the white card area
+            const maxX = box.clientWidth - noBtn.offsetWidth - 20;
+            const maxY = box.clientHeight - noBtn.offsetHeight - 20;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        function celebrate() {
+            document.getElementById('header').innerHTML = "I knew it! ❤️";
+            document.getElementById('gif').src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpndW1yZHF4ZzVqbm9pZHF4ZzVqbm9pZHF4ZzVqbm9pZHF4ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/KztT2c4u8mYYUiMKdJ/giphy.gif";
+            document.querySelector('.buttons').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
